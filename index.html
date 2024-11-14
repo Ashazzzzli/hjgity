@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love You Varisha</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-image: url('https://4kwallpapers.com/images/walls/thumbs_3t/9983.jpg');
+            background-size: 100% 100%;
+            background-position: center center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            width: 100vw;
+            font-family: Arial, sans-serif;
+        }
+
+        .husband-message {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 50px;
+            font-weight: bold;
+            color: #ff007f;
+            -webkit-text-stroke: 2px black;
+            text-stroke: 2px black;
+            z-index: 2;
+        }
+
+        .question-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background-image: url('https://i.pinimg.com/originals/7d/68/a4/7d68a425553c15f0edbddbc163d9c462.jpg');
+            background-size: cover;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            color: black;
+            font-weight: bold;
+            font-size: 36px;
+            z-index: 10;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .answer-button {
+            margin: 10px;
+            padding: 27px 63px;
+            font-size: 37px;
+            font-weight: bold;
+            color: white;
+            background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/efcd56f5-1acb-4e1b-900d-a411f3b31346/dfsib97-aa021ff8-35e0-4507-9184-2cfffb48a714.jpg/v1/fill/w_1280,h_800,q_75,strp/cute_kuromi_desktop_wallpaper_by_ashkittycat_dfsib97-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9ODAwIiwicGF0aCI6IlwvZlwvZWZjZDU2ZjUtMWFjYi00ZTFiLTkwMGQtYTQxMWYzYjMxMzQ2XC9kZnNpYjk3LWFhMDIxZmY4LTM1ZTAtNDUwNy05MTg0LTJjZmZmYjQ4YTcxNC5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.8c4cBXXmC27xaMaXqIHhuCHHB0xcRS5oFTDxhL2KbO4');
+            background-size: cover;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            font-size: 36px;
+            font-weight: bold;
+            color: inherit;
+            text-shadow: none;
+        }
+
+        .wrong { color: red; }
+        .correct { color: green; }
+
+        /* Close and Minimize Button */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            color: white;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            border-radius: 50%;
+            padding: 5px 10px;
+        }
+
+        .minimized {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            width: 200px;
+            height: 50px;
+            background-color: rgba(255, 105, 180, 0.8);
+            text-align: center;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+
+        .minimized img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Husband's Message -->
+    <div class="husband-message">From your husband, Ashaz</div>
+
+    <!-- Question container with buttons -->
+    <div class="question-container" id="question-container">
+        <button class="close-btn" onclick="minimizeContainer()">X</button>
+        <p>Do you love me more?</p>
+        <button class="answer-button" onclick="showFeedback('wrong')">Yes</button>
+        <button class="answer-button" onclick="showFeedback('correct')">No</button>
+        <div id="feedback" class="feedback"></div>
+    </div>
+
+    <!-- Minimized box -->
+    <div id="minimized-box" class="minimized">
+        <p>Do you love me?</p>
+        <img src="https://i.pinimg.com/originals/7d/68/a4/7d68a425553c15f0edbddbc163d9c462.jpg" alt="Kuromi Image">
+    </div>
+
+    <script>
+        function showFeedback(answer) {
+            const feedback = document.getElementById('feedback');
+            if (answer === 'wrong') {
+                feedback.textContent = 'Err, wrong!';
+                feedback.classList.add('wrong');
+                feedback.classList.remove('correct');
+            } else if (answer === 'correct') {
+                feedback.textContent = 'Yay! Correct!';
+                feedback.classList.add('correct');
+                feedback.classList.remove('wrong');
+            }
+        }
+
+        function minimizeContainer() {
+            document.getElementById('question-container').style.display = 'none';
+            const minimizedBox = document.getElementById('minimized-box');
+            minimizedBox.style.display = 'flex';
+            minimizedBox.classList.add('animate-minimize');
+        }
+    </script>
+
+</body>
+</html>
